@@ -27,8 +27,13 @@ export const forgotPasswordSchema = z.object({
 
 export type ForgotPasswordInput = z.infer<typeof forgotPasswordSchema>
 
-export const updatePasswordSchema = z
+export const confirmResetSchema = z
   .object({
+    token: z
+      .string()
+      .trim()
+      .min(6, 'El código tiene 6 dígitos')
+      .max(8, 'El código tiene 6 dígitos'),
     password: z.string().min(8, 'La contraseña debe tener al menos 8 caracteres'),
     confirmPassword: z.string(),
   })
@@ -37,7 +42,7 @@ export const updatePasswordSchema = z
     path: ['confirmPassword'],
   })
 
-export type UpdatePasswordInput = z.infer<typeof updatePasswordSchema>
+export type ConfirmResetInput = z.infer<typeof confirmResetSchema>
 
 export function buildCompleteProfileSchema(edadMinima: number) {
   return z

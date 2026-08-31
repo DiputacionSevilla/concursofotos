@@ -4,7 +4,7 @@ import type { Database } from '@/shared/types/database'
 
 const PARTICIPANT_ROUTES = ['/participar']
 const ADMIN_ROUTES = ['/admin']
-const AUTH_ONLY_ROUTES = ['/completar-perfil', '/actualizar-contrasena']
+const AUTH_ONLY_ROUTES = ['/completar-perfil']
 
 export async function proxy(request: NextRequest) {
   let response = NextResponse.next({ request })
