@@ -17,12 +17,10 @@ type InitialValues = {
 
 export function CompleteProfileForm({
   userId,
-  redirect,
   edadMinima,
   initialValues,
 }: {
   userId: string
-  redirect: string
   edadMinima: number
   initialValues?: Partial<InitialValues>
 }) {
@@ -76,7 +74,7 @@ export function CompleteProfileForm({
       return
     }
 
-    router.push(redirect)
+    router.refresh()
   }
 
   return (

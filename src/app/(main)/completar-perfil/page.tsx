@@ -40,7 +40,6 @@ export default async function CompletarPerfilPage({
         <div className="card p-6">
           <CompleteProfileForm
             userId={user.id}
-            redirect={safeRedirect}
             edadMinima={config.edad_minima}
             initialValues={{
               nombre: profile?.nombre ?? '',
