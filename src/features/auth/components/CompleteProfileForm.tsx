@@ -77,7 +77,6 @@ export function CompleteProfileForm({
     }
 
     router.push(redirect)
-    router.refresh()
   }
 
   return (
