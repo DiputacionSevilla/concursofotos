@@ -1,5 +1,6 @@
 import type { AdminStats } from '../services/compute-stats'
 import type { Tables } from '@/shared/types/database'
+import { formatDate } from '@/shared/utils/format-date'
 
 function diasHasta(iso: string | null): string {
   if (!iso) return 'Sin fecha'
@@ -7,6 +8,7 @@ function diasHasta(iso: string | null): string {
   if (diff > 1) return `Dentro de ${diff} días`
   if (diff === 1) return 'Mañana'
   if (diff === 0) return 'Hoy'
+  if (diff === -1) return 'Hace 1 día'
   return `Hace ${Math.abs(diff)} días`
 }
 
@@ -98,7 +100,7 @@ function FechaItem({ label, iso }: { label: string; iso: string | null }) {
     <div>
       <p className="text-xs font-medium text-stone-500">{label}</p>
       <p className="mt-0.5 text-sm font-semibold text-stone-900">
-        {iso ? new Date(iso).toLocaleString('es-ES', { dateStyle: 'medium', timeStyle: 'short' }) : 'Sin definir'}
+        {formatDate(iso)}
       </p>
       <p className="text-xs text-azulejo-600">{diasHasta(iso)}</p>
     </div>
