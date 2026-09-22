@@ -26,6 +26,19 @@ export default function LoginPage() {
           </Suspense>
         </div>
 
+        <div className="flex items-center gap-3 text-xs uppercase tracking-wide text-stone-400">
+          <span className="h-px flex-1 bg-stone-200" />
+          o
+          <span className="h-px flex-1 bg-stone-200" />
+        </div>
+
+        <Link
+          href="/enviar-foto"
+          className="block w-full rounded-lg bg-green-600 px-6 py-3 text-center text-sm font-semibold text-white transition hover:bg-green-700"
+        >
+          Enviar foto sin registro
+        </Link>
+
         <p className="text-center text-sm text-stone-500">
           <Link href="/" className="underline hover:text-stone-700">
             Volver a la información del concurso

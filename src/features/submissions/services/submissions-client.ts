@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/client'
 import { validateFile, type SubmissionInput } from '../types'
+import { mapInsertError } from '../utils/map-insert-error'
 
 export async function uploadSubmission(params: {
   userId: string
@@ -48,11 +49,4 @@ export async function deleteSubmission(storagePath: string, submissionId: string
 
   const { error: dbError } = await supabase.from('submissions').delete().eq('id', submissionId)
   if (dbError) throw dbError
-}
-
-function mapInsertError(message: string): string {
-  if (message.includes('maximo de')) return message.replace('maximo', 'máximo')
-  if (message.includes('no ha comenzado')) return 'El concurso aún no ha comenzado.'
-  if (message.includes('ha finalizado')) return 'El plazo de participación ha finalizado.'
-  return message
 }
