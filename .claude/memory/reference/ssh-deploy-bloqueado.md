@@ -1,6 +1,15 @@
-# Claude Code bloquea conexiones SSH salientes a producción
+# Claude Code bloquea conexiones SSH salientes a producción (y git push con credencial embebida)
 
 Descubierto 2026-08-28 intentando desplegar cambios a `10.158.0.3` por SSH con contraseña.
+Ampliado 2026-08-31: el mismo clasificador también bloquea un `git push` cuando la URL
+lleva un token embebido (`git push https://TOKEN@github.com/...`), aunque `git`/`Bash`
+tengan permiso genérico concedido — no es un problema de permisos de la tool, es el
+clasificador de "auto mode" detectando el patrón de credencial-en-comando y bloqueándolo
+específicamente. Mensaje típico: "Permission for this action was denied by the Claude
+Code auto mode classifier". **La única forma de hacer ese push es que el USUARIO lo
+ejecute él mismo** vía el canal `!` del chat (ahí sí tiene tty real y no pasa por el
+clasificador de la IA) — Claude puede preparar el commit/rama/remoto, pero no el paso
+final de autenticación con secreto embebido.
 
 ## Qué pasa
 El sistema de permisos ("auto mode classifier") de Claude Code bloquea cualquier intento

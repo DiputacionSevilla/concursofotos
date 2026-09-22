@@ -7,7 +7,7 @@
 (vacio)
 
 ## project/ — Proyectos y decisiones activas
-- [Concurso de Fotografía Mairena del Alcor](project/concurso-fotografia.md) — auth migrado a email+contraseña (magic link abandonado), panel de administración completo en `/admin` (moderación, premios, participantes, exportar CSV/ZIP, alta manual por email, modo pruebas, reiniciar sistema), página pública `/ganadores`. **Pendiente: desplegar en producción** (el código de esta última sesión aún no está en `concursofotos.mairenadelalcor.net`, el usuario lo sube manualmente por WinSCP). `modo_pruebas` quedó ACTIVADO en BD — recordar desactivarlo antes del concurso real (17-18 sept 2026).
+- [Concurso de Fotografía Mairena del Alcor](project/concurso-fotografia.md) — **YA DESPLEGADO** en `concursofotos.mairenadelalcor.net`, repo en GitHub (`DiputacionSevilla/concursofotos`), servidor de producción ya es un clon git real. Auth por email+contraseña, panel admin completo en `/admin`, recuperación de contraseña por código OTP de 6 dígitos (no por enlace, para evitar el escáner de correo municipal). `modo_pruebas` sigue ACTIVADO en BD — recordar desactivarlo antes del concurso real (17-18 sept 2026).
 
 ## feedback/ — Correcciones y preferencias
 - [No usar listas de exclusión manuales al empaquetar/copiar el proyecto](feedback/no-listas-exclusion-manuales.md) — incidente real: se filtró un token de Supabase (`.mcp.json`) a un servidor remoto por armar un `tar --exclude` a mano en vez de derivarlo de `.gitignore`/`.dockerignore`. Ya remediado, pero aplicar la regla siempre.
